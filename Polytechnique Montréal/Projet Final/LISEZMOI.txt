@@ -1,0 +1,15 @@
+le MakeFile de "exec_dir" à la capaciter le reconstruire la libraire de "lib_dir" à chacun des 
+commandes "make" et de nettoyer les objects et exécutable/librairie des deux dossiers
+
+
+Il est donc possible de seulement manipuler le MakeFile de "exec_dir"
+    -make
+    -make install
+    -make clean
+
+
+Le MakeFile gère également les fichiers sources et d'entêtes automatiquement en utilisant les variables internes. Si nous ajoutons d'autre fichiers, le MakeFile les prendra en charge automatiquement.
+
+
+
+-Équipe 0106: Chomp Chomp  :)
