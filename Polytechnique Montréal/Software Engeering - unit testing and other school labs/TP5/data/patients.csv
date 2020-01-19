@@ -1,0 +1,3 @@
+UserID,FirstName,LastName,Email,Telephone,StreetNumber,StreetName,City,PostalCode,Disease
+jo411,John,Doe,john.doe@polymtl.ca,514-555-555,325,rue Melrose,Montreal,H4E 7G1,diabète
+funkypoly,John,Smith,john.smith@polymtl.ca,514-515-5555,1232,2e av.,Montreal,H1T 0V3,grippe
