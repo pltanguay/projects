@@ -1,0 +1,53 @@
+<div class="icon-group-container">
+    <div class="tools-container">
+        <div class="draw-container">
+            <div class="drawing-icon" *ngFor="let tool of TOOL_ICON_DRAW">
+                <app-tool-icon
+                    class="draw"
+                    [icon]="tool.icon"
+                    [type]="tool.type"
+                    [isSelected]="currentSelectedTool === tool.type"
+                    (clickIcon)="onClickIcon($event)"
+                    matTooltip="{{ tool.tooltipText }}"
+                    [matTooltipPosition]="'after'"
+                ></app-tool-icon>
+            </div>
+        </div>
+        <div class="shape-container">
+            <div class="shape-icon" *ngFor="let tool of TOOL_ICON_SHAPE">
+                <app-tool-icon
+                    [icon]="tool.icon"
+                    [type]="tool.type"
+                    [isSelected]="currentSelectedTool === tool.type"
+                    (clickIcon)="onClickIcon($event)"
+                    matTooltip="{{ tool.tooltipText }}"
+                    [matTooltipPosition]="'after'"
+                ></app-tool-icon>
+            </div>
+        </div>
+        <div class="selection-container">
+            <div class="selection-icons" *ngFor="let tool of TOOL_ICON_SELECTION">
+                <app-tool-icon
+                    [icon]="tool.icon"
+                    [type]="tool.type"
+                    [isSelected]="currentSelectedTool === tool.type"
+                    (clickIcon)="onClickIcon($event)"
+                    matTooltip="{{ tool.tooltipText }}"
+                    [matTooltipPosition]="'after'"
+                ></app-tool-icon>
+            </div>
+        </div>
+        <div class="utils-container">
+            <div class="utils-icon" *ngFor="let tool of TOOL_ICON_UTILS">
+                <app-tool-icon
+                    [icon]="tool.icon"
+                    [type]="tool.type"
+                    [isSelected]="currentSelectedTool === tool.type"
+                    (clickIcon)="onClickIcon($event)"
+                    matTooltip="{{ tool.tooltipText }}"
+                    [matTooltipPosition]="'after'"
+                ></app-tool-icon>
+            </div>
+        </div>
+    </div>
+</div>

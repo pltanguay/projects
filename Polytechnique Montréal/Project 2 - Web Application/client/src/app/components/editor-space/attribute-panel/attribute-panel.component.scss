@@ -1,0 +1,67 @@
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.property-panel {
+    height: 100vh;
+    width: 0;
+    background: #b5c1cc;
+    transition: 0.4s;
+    float: left;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    box-shadow: -2px 0px 3px rgba(83, 80, 80, 0.4);
+}
+
+.opened {
+    width: 270px;
+
+    * {
+        animation: fade-in 0.7s ease-in-out forwards;
+    }
+}
+
+.closed {
+    animation: fade-out 0.5s ease-in-out forwards;
+}
+
+.title {
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 20px;
+    white-space: nowrap;
+}
+
+mat-icon {
+    transform: scale(1.2);
+    margin-bottom: 15px;
+    color: black;
+}
+
+mat-panel-title {
+    justify-content: center !important;
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.1;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

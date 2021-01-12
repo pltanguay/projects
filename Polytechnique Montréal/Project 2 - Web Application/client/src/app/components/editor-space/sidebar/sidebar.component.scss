@@ -1,0 +1,82 @@
+@mixin displayFlex($dis, $dir, $align, $justify) {
+    display: $dis;
+    flex-direction: $dir;
+    align-items: $align;
+    justify-content: $justify;
+}
+.sidebar-container {
+    background-color: #edf2f4;
+    height: 100vh;
+    width: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    float: left;
+    justify-content: space-between;
+    box-shadow: 2px 2px 3px rgba(83, 80, 80, 0.199);
+    padding-bottom: 10px;
+    padding-top: 10px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+button {
+    transition: 0.2s;
+}
+button:focus {
+    background-color: #8d99ae;
+}
+
+.undo-redo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-container {
+    @include displayFlex(grid, column, center, center);
+    grid-template-rows: repeat(2, 1fm);
+    grid-template-rows: 50% 50%;
+    background-color: #aac6c786;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 5px;
+    margin-bottom: 8px;
+    box-shadow: -2px -2px 3px rgba(83, 80, 80, 0.199);
+    border-radius: 10%;
+    & > * {
+        transition: 0.3s transform;
+
+        &:hover {
+            transform: scale(1.3);
+        }
+    }
+}
+
+app-tool-icon-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    & > * {
+        transition: 0.3s transform;
+
+        &:hover {
+            transform: scale(1.3);
+        }
+    }
+}
+
+.mat-icon {
+    cursor: pointer;
+}
+
+.manual-home-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

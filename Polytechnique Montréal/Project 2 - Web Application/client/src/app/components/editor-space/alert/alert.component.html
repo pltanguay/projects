@@ -1,0 +1,18 @@
+<div *ngIf="canvasAlert.type === 'ChangesSaved'; else messageBlock">
+    <div class="alert-container changes-container" [ngClass]="canvasAlert.canShowAlert ? 'show-alert' : 'hide-alert'">
+        <p class="message-container">Dessin sauvegardé</p>
+    </div>
+</div>
+
+<ng-template #messageBlock>
+    <div
+        class="alert-container alert-message"
+        [ngClass]="canvasAlert.canShowAlert ? 'show-alert' : 'hide-alert'"
+        [ngStyle]="{ backgroundColor: canvasAlert.type === 'Success' ? 'green' : '#f72f4e' }"
+    >
+        <i class="fas fa-exclamation-triangle" [ngStyle]="{ display: canvasAlert.type === 'Success' ? 'none' : 'flex' }"></i>
+        <p class="message-container">
+            {{ canvasAlert.alert }}
+        </p>
+    </div>
+</ng-template>

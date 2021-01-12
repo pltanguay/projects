@@ -1,0 +1,29 @@
+<div class="title">{{ title }}</div>
+<div class="attribute-controls-container">
+    <div class="slider-control">
+        <p class="control-title">Taille</p>
+        <mat-slider
+            class="control-slider"
+            (input)="onWidthChange($event)"
+            [value]="width"
+            thumbLabel
+            tickInterval="1"
+            min="{{ minWidth }}"
+            max="{{ maxWidth }}"
+        ></mat-slider>
+        <span class="control-value">{{ width }}<small>px</small></span>
+    </div>
+    <div class="slider-control">
+        <p class="control-title">Angle</p>
+        <mat-slider
+            class="control-slider"
+            (input)="onAngleChange($event)"
+            [value]="angle"
+            thumbLabel
+            tickInterval="1"
+            min="{{ minAngle }}"
+            max="{{ maxAngle }}"
+        ></mat-slider>
+        <span class="control-value">{{ angle }}°</span>
+    </div>
+</div>

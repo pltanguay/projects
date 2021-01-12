@@ -1,0 +1,62 @@
+<div class="title">{{ title }}</div>
+<div class="attribute-controls-container">
+    <div class="slider-control">
+        <p class="control-title">Points</p>
+        <mat-slider
+            id="pointsPerSplashSlider"
+            class="control-slider"
+            thumbLabel
+            (input)="pointsPerSplashChanged($event)"
+            [value]="nPointsPerSplash"
+            tickInterval="1"
+            min="{{ minPointsPerSplash }}"
+            max="{{ maxPointsPerSplash }}"
+        ></mat-slider>
+        <span class="control-value">{{ nPointsPerSplash }}<small>pts</small></span>
+    </div>
+
+    <div class="slider-control">
+        <p class="control-title">Fréquence</p>
+        <mat-slider
+            id="frequencySlider"
+            class="control-slider"
+            thumbLabel
+            (input)="frequencyChanged($event)"
+            [value]="frequency"
+            tickInterval="1"
+            step="10"
+            min="{{ minFrequency }}"
+            max="{{ maxFrequency }}"
+        ></mat-slider>
+        <span class="control-value">{{ frequency }}<small>e/s</small></span>
+    </div>
+
+    <div class="slider-control">
+        <p class="control-title">Aérosol</p>
+        <mat-slider
+            id="widthSplashSlider"
+            class="control-slider"
+            thumbLabel
+            (input)="widthSplashChanged($event)"
+            [value]="widthSplash"
+            tickInterval="1"
+            min="{{ minSplashWidth }}"
+            max="{{ maxSplashWidth }}"
+        ></mat-slider>
+        <span class="control-value">{{ widthSplash }}<small>px</small></span>
+    </div>
+    <div class="slider-control">
+        <p class="control-title">Goutelette</p>
+        <mat-slider
+            id="widthDropletSlider"
+            class="control-slider"
+            thumbLabel
+            (input)="widthDropletsChanged($event)"
+            [value]="widthDroplets"
+            tickInterval="1"
+            min="{{ minDropletWidth }}"
+            max="{{ maxDropletWidth }}"
+        ></mat-slider>
+        <span class="control-value">{{ widthDroplets }}<small>px</small></span>
+    </div>
+</div>

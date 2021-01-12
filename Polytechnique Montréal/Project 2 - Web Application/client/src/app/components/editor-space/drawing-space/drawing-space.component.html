@@ -1,0 +1,15 @@
+<div
+    appSgvFilters
+    #canvasContainer
+    [style.width.px]="containerWidth"
+    [style.height.px]="containerHeight"
+    draggable="false"
+    class="drawing-container"
+    [ngStyle]="{ cursor: customCursor ? 'none' : cursor }"
+>
+    <app-selection></app-selection>
+    <app-resize-container *ngIf="selection"></app-resize-container>
+    <app-base-canvas [width]="containerWidth" [height]="containerHeight"></app-base-canvas>
+    <app-preview-canvas appCanvas [width]="containerWidth" [height]="containerHeight"></app-preview-canvas>
+    <app-grid-canvas appCanvas></app-grid-canvas>
+</div>

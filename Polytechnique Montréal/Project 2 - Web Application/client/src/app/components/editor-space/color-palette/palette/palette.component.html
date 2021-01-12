@@ -1,0 +1,9 @@
+<canvas
+    #paletteCanvas
+    class="palette-canvas"
+    (mousemove)="onMouseMoveCanvas($event)"
+    (mousedown)="onMouseDownCanvas($event)"
+    (mouseup)="onMouseUpCanvas()"
+></canvas>
+<span class="preview-cursor" [ngStyle]="{ top: offsetY, left: offsetX }"></span>
+<span class="base-cursor" [ngStyle]="{ top: clickedOffsetY, left: clickedOffsetX }"></span>

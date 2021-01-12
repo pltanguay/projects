@@ -1,0 +1,57 @@
+.border-width-panel {
+    background-color: transparent;
+    border: 0;
+    box-shadow: none !important;
+    pointer-events: none;
+}
+
+.width-slider {
+    pointer-events: all;
+    color: black;
+}
+#policeText {
+    display: grid;
+    justify-content: center;
+    padding-bottom: 10%;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(6, 16.6%);
+    grid-row-gap: 5px;
+    height: 100%;
+    font-size: 13px;
+    margin-left: 18px;
+}
+
+:host {
+    width: 100%;
+}
+
+.text-control {
+    width: 100%;
+    padding: 2px 12px;
+    margin-bottom: 9px;
+
+    .toggle-title {
+        width: 70%;
+        color: black;
+        text-align: left;
+        font-size: 15px;
+        padding-bottom: 12px;
+    }
+    .text-property {
+        display: flex;
+        flex-direction: row;
+
+        .text-button-group {
+            display: flex;
+            .text-button {
+                margin-right: 2px;
+                margin-left: 2px;
+                border-radius: 4px;
+
+                .mat-icon {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

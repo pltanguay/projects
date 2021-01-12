@@ -1,0 +1,4 @@
+<div class="property-panel" [ngClass]="isPanelOpen ? 'opened' : 'closed'">
+    <ng-container *ngComponentOutlet="selectedPanel"></ng-container>
+    <app-color-palette></app-color-palette>
+</div>

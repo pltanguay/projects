@@ -1,0 +1,26 @@
+<div class="title">{{ title }}</div>
+<div class="attribute-controls-container">
+    <div class="slider-control">
+        <p class="control-title">Taille</p>
+        <mat-slider
+            id="widthSlider"
+            class="control-slider"
+            thumbLabel
+            (input)="widthChanged($event)"
+            [value]="strokeWidth"
+            tickInterval="1"
+            min="{{ minWidth }}"
+            max="{{ maxWidth }}"
+        ></mat-slider>
+        <span class="control-value">{{ strokeWidth }}<small>px</small></span>
+    </div>
+
+    <div class="radio-control">
+        <p class="control-title">Textures</p>
+        <mat-radio-group id="textureRadio" class="radio-group" (change)="textureChanged($event)" [(ngModel)]="selectedTexture">
+            <mat-radio-button class="radio-button" *ngFor="let texture of textures" [value]="texture">
+                {{ texture }}
+            </mat-radio-button>
+        </mat-radio-group>
+    </div>
+</div>

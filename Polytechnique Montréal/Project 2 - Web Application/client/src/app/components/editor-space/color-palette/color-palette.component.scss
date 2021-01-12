@@ -1,0 +1,363 @@
+@mixin displayFlex($dir, $align, $justify) {
+    display: flex;
+    flex-direction: $dir;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+:host {
+    width: 90%;
+    @include displayFlex(column, center, space-between);
+}
+
+.saved-container {
+    width: 100%;
+    height: 30vh;
+    @include displayFlex(column, center, space-evenly);
+    border-radius: 10px;
+    background-color: #edf2f4;
+    padding: 2px 5px;
+    box-shadow: 0px 0px 5px rgba(#000, 0.2);
+}
+
+.saved-colors-parent-container {
+    width: 100%;
+    height: 55%;
+    @include displayFlex(column, center, center);
+
+    .saved-colors-title {
+        width: 100%;
+        height: 20%;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .saved-colors-container {
+        width: 100%;
+        height: 80%;
+        display: grid;
+        grid-template-columns: repeat(5, 20%);
+        grid-template-rows: 50% 50%;
+        place-items: center;
+
+        span {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 7px rgba(#000, 0.3);
+            transition: transform 0.3s;
+
+            &:hover {
+                transform: scale(1.15);
+            }
+        }
+    }
+}
+
+.primary-secondary-parent-container {
+    width: 100%;
+    height: 40%;
+    @include displayFlex(row, center, space-between);
+    position: relative;
+
+    .swap-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba($color: #edf2f4, $alpha: 1);
+        padding: 5px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 0.3s transform;
+        box-shadow: 0 0 5px rgba(#000, 0.5);
+
+        &:hover {
+            transform: translate(-50%, -50%) scale(1.2) rotate(180deg);
+        }
+
+        &:active {
+            transform: translate(-50%, -50%) scale(1.2) rotate(-360deg);
+        }
+    }
+
+    .primary-secondary-container {
+        width: 47%;
+        height: 100%;
+        background-color: #edf2f4;
+        border-radius: 8px;
+        transition: 0.4s background-color;
+        cursor: pointer;
+
+        .primary-secondary-title {
+            width: 100%;
+            height: 35%;
+            @include displayFlex(row, center, center);
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .primary-secondary-color-container {
+            width: 100%;
+            height: 65%;
+            @include displayFlex(row, center, center);
+
+            span {
+                width: 28px;
+                height: 28px;
+                background-color: red;
+                border-radius: 50%;
+                box-shadow: 0 0 7px rgba(#000, 0.3);
+            }
+        }
+
+        &.active-primary-secondary {
+            background-color: rgba($color: #b5bdcc, $alpha: 0.9);
+        }
+
+        &:hover:not(.active-primary-secondary) {
+            background-color: rgba($color: #b5bdcc, $alpha: 0.5);
+        }
+    }
+}
+
+.palette-container {
+    width: 100%;
+    @include displayFlex(column, center, space-evenly);
+    border-radius: 10px;
+    background-color: #edf2f4;
+    padding: 2px 5px;
+    margin-top: 10px;
+    transform: scaleY(0);
+    transform-origin: top;
+    box-shadow: 0px 0px 5px rgba(#000, 0.2);
+
+    .close-container {
+        width: 100%;
+        height: 6%;
+        @include displayFlex(row, center, flex-end);
+
+        span {
+            width: 18px;
+            height: 18px;
+            background-color: #b5bdcc;
+            border-radius: 4px;
+            position: relative;
+            cursor: pointer;
+            transition: 0.3s border-radius, 0.3s transform;
+
+            &::after {
+                content: 'x';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -55%);
+            }
+
+            &:hover {
+                border-radius: 50%;
+                transform: rotate(360deg);
+            }
+        }
+    }
+
+    .app-palette-container {
+        width: 235px;
+        height: 35%;
+        margin-top: 5px;
+        display: flex;
+        overflow: hidden;
+
+        app-palette {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .sliders-container {
+        width: 100%;
+        height: 15%;
+        margin-top: 10px;
+        display: grid;
+        place-items: center;
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 50% 50%;
+        grid-template-areas:
+            'hue color'
+            'opacity color';
+
+        app-hue-slider {
+            grid-area: hue;
+            align-self: flex-start;
+        }
+
+        .opacity-input {
+            grid-area: opacity;
+            align-self: flex-end;
+            box-shadow: 0 0 7px rgba(#000, 0.3);
+        }
+
+        .actual-color {
+            grid-area: color;
+            width: 70%;
+            height: 100%;
+            background-color: rgb(0, 145, 255);
+            border-radius: 6px;
+            box-shadow: 0 0 7px rgba(#000, 0.3);
+            justify-self: flex-end;
+        }
+    }
+
+    .color-codes-container {
+        width: 100%;
+        height: 15%;
+        margin-top: 10px;
+        @include displayFlex(row, center, space-between);
+
+        .rgba-code-container {
+            width: 15%;
+            height: 80%;
+            position: relative;
+        }
+
+        .hex-code-container {
+            width: 40%;
+            height: 80%;
+            position: relative;
+        }
+
+        p {
+            position: absolute;
+            left: 10%;
+            top: 50%;
+            transform: translateY(-30%);
+            opacity: 0;
+            transition: 0.3s opacity;
+            font-size: 15px;
+        }
+
+        input {
+            width: 100%;
+            height: 100%;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 4px rgba(#000, 0.1);
+            text-align: center;
+            padding-top: 10px;
+
+            &:focus + span {
+                font-size: 12px;
+
+                &.red-rgb-input {
+                    color: red;
+                }
+
+                &.green-rgb-input {
+                    color: green;
+                }
+
+                &.blue-rgb-input {
+                    color: blue;
+                }
+            }
+        }
+
+        span {
+            position: absolute;
+            top: -25%;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: 0.3s font-size, 0.3s color;
+        }
+    }
+
+    .save-actions-container {
+        height: 14%;
+        width: 100%;
+        @include displayFlex(column, center, space-evenly);
+        position: relative;
+    }
+
+    &:hover .color-codes-container p {
+        opacity: 1;
+    }
+}
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: rgba($color: #b5bdcc, $alpha: 1);
+    padding: 6px 10px;
+    border-radius: 6px;
+    box-shadow: 0 0 4px rgba(#000, 0.3);
+    transition: 0.3s box-shadow, 0.3s transform;
+
+    &:hover {
+        box-shadow: none;
+    }
+
+    &:active {
+        transform: scale(0.8);
+    }
+}
+
+input[type='range'] {
+    width: 100%;
+    height: 70%;
+    border-radius: 7px;
+    -webkit-appearance: none;
+    cursor: pointer;
+    background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(0, 0, 0));
+    box-shadow: 0 0 4px rgba(#000, 0.1);
+
+    &:focus,
+    &:active {
+        outline: none;
+    }
+}
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: #b5bdcc;
+    box-shadow: 0 0 8px rgba(#000, 0.2);
+}
+
+.disable-btn {
+    opacity: 0.3;
+    box-shadow: none;
+    cursor: initial;
+    pointer-events: none;
+}
+
+.showPalette {
+    animation: showPaletteAnimation 0.3s ease-in-out forwards;
+}
+
+.hidePalette {
+    animation: hidePaletteAnimation 0.3s ease-in-out forwards;
+}
+
+@keyframes showPaletteAnimation {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        height: 50vh;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes hidePaletteAnimation {
+    from {
+        transform: scaleY(1);
+    }
+    to {
+        transform: scaleY(0);
+    }
+}

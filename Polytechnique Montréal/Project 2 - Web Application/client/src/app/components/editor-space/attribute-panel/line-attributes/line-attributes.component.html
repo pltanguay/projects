@@ -1,0 +1,52 @@
+<div>
+    <div class="title">{{ title }}</div>
+    <div class="attribute-controls-container">
+        <div class="slider-control">
+            <p class="control-title">Taille</p>
+
+            <mat-slider
+                id="widthSlider"
+                class="control-slider"
+                thumbLabel
+                (input)="widthChanged($event)"
+                [value]="lineWidth"
+                tickInterval="1"
+                min="{{ minWidth }}"
+                max="{{ maxWidth }}"
+            ></mat-slider>
+            <span class="control-value">{{ lineWidth }}<small>px</small></span>
+        </div>
+    </div>
+
+    <div class="attribute-controls-container">
+        <mat-expansion-panel hideToggle [expanded]="isWithJunctions" class="border-width-panel">
+            <mat-expansion-panel-header class="toggle-control">
+                <p class="toggle-title">Jonctions</p>
+                <mat-slide-toggle
+                    id="borderToggle"
+                    class="control-slider"
+                    class="width-slider toggle-btn"
+                    [checked]="isWithJunctions"
+                    (change)="withJunctionsToggled($event)"
+                >
+                </mat-slide-toggle>
+            </mat-expansion-panel-header>
+            <div class="slider-control">
+                <p class="control-title">Taille</p>
+
+                <mat-slider
+                    id="radiusSlider"
+                    class="slider"
+                    thumbLabel
+                    (input)="junctionRadiusChanged($event)"
+                    [value]="junctionRadius"
+                    tickInterval="1"
+                    [(min)]="minRadius"
+                    [(max)]="maxRadius"
+                    style="pointer-events: all"
+                ></mat-slider>
+                <span class="control-value">{{ junctionRadius }}px</span>
+            </div>
+        </mat-expansion-panel>
+    </div>
+</div>

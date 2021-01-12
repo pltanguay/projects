@@ -1,0 +1,150 @@
+<button
+    (click)="onClickAction()"
+    mat-icon-button
+    matTooltip="{{ toolTipText }}"
+    [matTooltipPosition]="'after'"
+    [ngClass]="{ ' selected ': isSelected }"
+>
+    <i class="fas fa-file-export fa"></i>
+</button>
+
+<ng-template #exportDrawingDialogElements class="export-drawing-container">
+    <form class="export-drawing-form" [formGroup]="exportForm">
+        <div class="dialog-title">
+            <h1 mat-dialog-title>Exporter le dessin</h1>
+            <i class="fas fa-file-export export-icon"></i>
+            <i class="fas fa-window-close close-icon" (click)="onCloseButtonClicked()"></i>
+        </div>
+        <div class="export-main-container">
+            <div class="dialog-content">
+                <div class="name-container">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Nom du dessin</mat-label>
+                        <input
+                            matInput
+                            type="text"
+                            required
+                            autocomplete="off"
+                            spellcheck="false"
+                            formControlName="drawingName"
+                            (keydown)="$event.stopPropagation()"
+                        />
+                        <mat-hint>
+                            <p [ngStyle]="{ color: exportForm.get('drawingName')?.invalid ? '#ed5269' : '' }">
+                                Le nom saisi doit être composé d'au moins 3 caractères.
+                            </p>
+                        </mat-hint>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Votre adresse courriel</mat-label>
+                        <input
+                            matInput
+                            required
+                            autocomplete="off"
+                            spellcheck="false"
+                            formControlName="emailAddress"
+                            (keydown)="$event.stopPropagation()"
+                        />
+                        <mat-hint>
+                            <p [ngStyle]="{ color: exportForm.get('emailAddress')?.hasError('emailError') ? '#ed5269' : '' }">
+                                Votre adresse courriel doit contenir le symbole @ et finir par un domaine (ex: .com, .ca, ...)
+                            </p>
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+                <div class="preview-container">
+                    <div class="drawing-preview">
+                        <img draggable="false" src="{{ previewCanvas }}" alt="" id="img" class="drawing-preview" [ngStyle]="{ filter: cssFilter }" />
+                    </div>
+                    <div class="drawing-settings-container">
+                        <div class="filter-container">
+                            <p>Filtres</p>
+                            <div class="option-grid-container">
+                                <mat-radio-group
+                                    id="filterRadio"
+                                    class="radio-group-filter-container"
+                                    (change)="filterChanged($event)"
+                                    (ngModel)="(currentFilter.name)"
+                                    [ngModelOptions]="{ standalone: true }"
+                                >
+                                    <mat-radio-button
+                                        class="radio-button-filter"
+                                        *ngFor="let filter of filters"
+                                        [value]="filter"
+                                        [checked]="filter === 'Aucun'"
+                                    >
+                                        {{ filter }}
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div class="slider-container" *ngIf="cssFilter !== 'none'">
+                                <mat-slider
+                                    id="slider"
+                                    thumbLabel
+                                    [displayWith]="sliderFormatLabel.bind(this)"
+                                    (input)="sliderValueChanged($event)"
+                                    [value]="sliderValue"
+                                    tickInterval="1"
+                                    min="{{ minValue }}"
+                                    [max]="currentFilter.maxValue"
+                                ></mat-slider>
+                            </div>
+                        </div>
+                        <div class="format-container">
+                            <p>Formats</p>
+                            <mat-radio-group
+                                id="formatRadio"
+                                class="radio-group-format-container"
+                                (change)="formatChanged($event)"
+                                [(ngModel)]="currentFormat"
+                                [ngModelOptions]="{ standalone: true }"
+                            >
+                                <mat-radio-button class="radio-button-format" *ngFor="let format of formats" [value]="format">
+                                    {{ format }}
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dialog-actions" [ngClass]="serverResponse.status ? 'show-email' : 'show-buttons'">
+                <div class="email-response-container" [ngStyle]="{ backgroundColor: serverResponse.status === 200 ? 'green' : '#f72f4e' }">
+                    <span class="email-message">{{ serverResponse.message }}</span>
+                    <span class="email-close">
+                        <i class="fas fa-window-close" (click)="closeEmailResponse()"></i>
+                    </span>
+                </div>
+                <div class="buttons-container" [ngClass]="isSendingEmail ? 'show-spinner' : 'hide-spinner'">
+                    <img src="../../../../../../assets/images/spinner.gif" alt="spinner" />
+                    <button
+                        mat-button
+                        (click)="exportForm.get('drawingName')?.valid ? onExportClick($event) : ''"
+                        class="custom-button yes-btn export-btn"
+                        [ngClass]="exportForm.get('drawingName')?.invalid ? 'invalid-form-properties' : 'valid-form-properties'"
+                    >
+                        Télécharger
+                    </button>
+                    <button
+                        mat-button
+                        (click)="exportForm.valid ? onEmailButtonClicked() : ''"
+                        class="custom-button yes-btn export-btn"
+                        [ngClass]="exportForm.invalid ? 'invalid-form-properties' : 'valid-form-properties'"
+                    >
+                        Envoyer par courriel
+                    </button>
+                    <button mat-button mat-dialog-close class="custom-button no-btn cancel-btn" (click)="onCloseButtonClicked()">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+            fill="#aac6c786"
+            fill-opacity="0.5"
+            d="M0,160L15,154.7C30,149,60,139,90,138.7C120,139,150,149,180,176C210,203,240,245,270,245.3C300,245,330,203,360,186.7C390,171,420,181,450,186.7C480,192,510,192,540,160C570,128,600,64,630,80C660,96,690,192,720,234.7C750,277,780,267,810,229.3C840,192,870,128,900,90.7C930,53,960,43,990,32C1020,21,1050,11,1080,21.3C1110,32,1140,64,1170,106.7C1200,149,1230,203,1260,218.7C1290,235,1320,213,1350,202.7C1380,192,1410,192,1425,192L1440,192L1440,320L1425,320C1410,320,1380,320,1350,320C1320,320,1290,320,1260,320C1230,320,1200,320,1170,320C1140,320,1110,320,1080,320C1050,320,1020,320,990,320C960,320,930,320,900,320C870,320,840,320,810,320C780,320,750,320,720,320C690,320,660,320,630,320C600,320,570,320,540,320C510,320,480,320,450,320C420,320,390,320,360,320C330,320,300,320,270,320C240,320,210,320,180,320C150,320,120,320,90,320C60,320,30,320,15,320L0,320Z"
+        ></path>
+    </svg>
+</ng-template>

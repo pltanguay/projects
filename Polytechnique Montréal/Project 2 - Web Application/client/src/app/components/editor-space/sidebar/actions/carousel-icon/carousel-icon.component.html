@@ -1,0 +1,9 @@
+<button
+    (click)="onClickAction()"
+    mat-icon-button
+    matTooltip="{{ toolTipText }}"
+    [matTooltipPosition]="'after'"
+    [ngClass]="{ ' selected ': isSelected }"
+>
+    <mat-icon>view_carousel</mat-icon>
+</button>

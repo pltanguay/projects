@@ -1,0 +1,15 @@
+.selected {
+    background: rgb(172, 186, 209);
+    background: radial-gradient(circle, rgba(172, 186, 209, 1) 50%, rgba(141, 153, 174, 1) 100%);
+    border-radius: 10px !important;
+    transition: 0.3s;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+button:not(.selected) {
+    transition: 0.3s transform;
+
+    &:hover {
+        transform: scale(1.3);
+    }
+}

@@ -1,0 +1,67 @@
+<div>
+    <div class="title">{{ title }}</div>
+
+    <div class="attribute-controls-container">
+        <div class="slider-control">
+            <p class="control-title">Taille</p>
+            <mat-slider
+                class="control-slider"
+                id="text-slider"
+                thumbLabel
+                (input)="sizeChanged($event)"
+                [value]="size"
+                tickInterval="1"
+                min="{{ minSize }}"
+                max="{{ maxSize }}"
+                [disabled]="shouldDisableInput"
+                (mouseover)="activateInput()"
+            ></mat-slider>
+            <span class="control-value">{{ size }}<small>px</small></span>
+        </div>
+
+        <div class="text-control">
+            <p class="toggle-title">Propriétés</p>
+            <div class="text-property">
+                <div class="text-button-group">
+                    <div class="text-button" id="bold">
+                        <button mat-icon-button (click)="boldToggled()">
+                            <mat-icon>format_bold</mat-icon>
+                        </button>
+                    </div>
+                    <div class="text-button" id="italic">
+                        <button mat-icon-button (click)="italicToggled()">
+                            <mat-icon>format_italic</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-button-group">
+                    <div class="text-button" id="left">
+                        <button mat-icon-button (click)="alignChanged('left')">
+                            <mat-icon>format_align_left</mat-icon>
+                        </button>
+                    </div>
+                    <div class="text-button" id="center">
+                        <button mat-icon-button (click)="alignChanged('center')">
+                            <mat-icon>format_align_center</mat-icon>
+                        </button>
+                    </div>
+                    <div class="text-button" id="right">
+                        <button mat-icon-button (click)="alignChanged('right')">
+                            <mat-icon>format_align_right</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="radio-control">
+            <p class="control-title">Police</p>
+            <mat-radio-group id="policeText" class="radio-group" (change)="policeChanged($event)" [(ngModel)]="selectedPolice">
+                <mat-radio-button class="radio-button" *ngFor="let police of polices" [value]="police">
+                    <p style="font-family: '{{ police }}'">{{ police }}</p>
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+</div>

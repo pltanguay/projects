@@ -1,0 +1,25 @@
+<div class="button-container">
+    <button
+        mat-raised-button
+        class="resize"
+        color="warn"
+        [ngClass]="!toolProcessing && canUndo ? 'activate' : 'deactivate'"
+        (click)="onUndoClick()"
+        matTooltip="Annuler - CTRL + Z"
+        [matTooltipPosition]="'after'"
+    >
+        <mat-icon> undo </mat-icon>
+    </button>
+
+    <button
+        mat-raised-button
+        class="resize"
+        color="accent"
+        [ngClass]="!toolProcessing && canRedo ? 'activate' : 'deactivate'"
+        (click)="onRedoClick()"
+        matTooltip="Refaire - CTRL + SHIFT + Z"
+        [matTooltipPosition]="'after'"
+    >
+        <mat-icon> redo </mat-icon>
+    </button>
+</div>

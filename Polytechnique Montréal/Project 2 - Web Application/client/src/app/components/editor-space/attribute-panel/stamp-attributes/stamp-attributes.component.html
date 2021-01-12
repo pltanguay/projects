@@ -1,0 +1,49 @@
+<div class="title">{{ title }}</div>
+<div class="attribute-controls-container">
+    <div class="slider-control">
+        <p class="control-title">Échelle</p>
+        <mat-slider
+            id="scaleSlider"
+            class="control-slider"
+            thumbLabel
+            (input)="scaleFactorChanged($event)"
+            [value]="stampService.scaleFactor"
+            tickInterval="1"
+            [disabled]="isURLDefault"
+            step="0.05"
+            min="{{ minScaleFactor }}"
+            max="{{ maxScaleFactor }}"
+        ></mat-slider>
+        <span class="control-value">{{ stampService.scaleFactor }}<small>x</small></span>
+    </div>
+    <div class="slider-control">
+        <p class="control-title">Angle</p>
+        <mat-slider
+            id="angleSlider"
+            class="control-slider"
+            thumbLabel
+            (input)="angleChanged($event)"
+            [value]="angle"
+            tickInterval="1"
+            [ngClass]="isURLDefault ? 'invalid-input' : 'valid-input'"
+            min="{{ minAngle }}"
+            max="{{ maxAngle }}"
+        ></mat-slider>
+        <span class="control-value">{{ angle }}<small>°</small></span>
+    </div>
+    <div class="buttons-container">
+        <button class="menu-emojis-button" mat-button [matMenuTriggerFor]="emojis">Emojis</button>
+        <mat-menu class="menu-emojis" #emojis="matMenu">
+            <button *ngFor="let element of urlsEmojis" mat-menu-item (click)="stampChanged(element)">
+                <img src="{{ element }}" />
+            </button>
+        </mat-menu>
+
+        <button class="menu-others-button" mat-button [matMenuTriggerFor]="others">Autres</button>
+        <mat-menu class="menu-others" #others="matMenu">
+            <button *ngFor="let element of urlsOthers" mat-menu-item (click)="stampChanged(element)">
+                <img src="{{ element }}" />
+            </button>
+        </mat-menu>
+    </div>
+</div>

@@ -1,0 +1,308 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    src: url('../../../assets/fonts/blogger_sans.otf');
+    font-family: blogger;
+}
+
+@mixin displayFlex($dir, $align, $justify) {
+    display: flex;
+    flex-direction: $dir;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+.container {
+    @include displayFlex(column, center, center);
+    height: 100vh;
+    width: 100vw;
+    padding: 0 20px;
+    overflow: hidden;
+    position: relative;
+    background: url('./../../../assets/background.png') repeat;
+}
+
+.bottom-design {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+
+    svg {
+        position: relative;
+        display: block;
+        width: calc(127% + 1.3px);
+        height: 147px;
+    }
+
+    .shape-fill {
+        fill: #aac6c786;
+    }
+}
+
+.header-container {
+    width: 100%;
+    height: 17%;
+    @include displayFlex(row, center, space-between);
+    margin-top: 13px;
+}
+
+.mid-container {
+    width: 100%;
+    height: 80%;
+    @include displayFlex(row, center, center);
+}
+
+.container-button {
+    @include displayFlex(column, center, space-evenly);
+    height: 360px;
+    width: 360px;
+    background-color: #edf2f4;
+    border-radius: 15px;
+    z-index: 2;
+    transform: translateY(-30px);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background-color: rgba(#fff, 0.2);
+        transform: skewX(-5deg);
+        transition: left 0.4s;
+    }
+
+    &:hover::after {
+        left: 120%;
+    }
+
+    .border-animation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            opacity: 0;
+            background-image: linear-gradient(to right, transparent, #aac6c786);
+            animation: move-border 2s linear infinite;
+        }
+
+        &:nth-child(1) {
+            transform: rotate(0);
+        }
+
+        &:nth-child(2) {
+            transform: rotate(90deg);
+
+            &::after {
+                animation-delay: 1s;
+            }
+        }
+        &:nth-child(3) {
+            transform: rotate(180deg);
+        }
+        &:nth-child(4) {
+            transform: rotate(270deg);
+
+            &::after {
+                animation-delay: 1s;
+            }
+        }
+    }
+}
+
+.button-size {
+    width: 80% !important;
+    height: 60px;
+    background-color: #aac6c786;
+    border-radius: 14px;
+    position: relative;
+    box-shadow: none;
+    color: rgba(#000, 0.7);
+    @include displayFlex(row, center, space-between);
+    font-family: blogger;
+    z-index: 3;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+    &.disable-button {
+        opacity: 0.65;
+        pointer-events: none;
+    }
+
+    .mat-icon {
+        width: 25%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transition: transform 0.2s;
+        transform: translateY(-50%);
+        @include displayFlex(row, center, center);
+    }
+
+    .button-name {
+        width: 75%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        transform: translateY(-50%);
+        transition: transform 0.2s;
+        @include displayFlex(row, center, center);
+    }
+
+    &:hover {
+        .mat-icon {
+            transform: translateY(-50%) scale(1.2);
+        }
+        .button-name {
+            transform: translateY(-50%) scale(1.1);
+        }
+    }
+}
+
+.footer-item {
+    width: 100%;
+    height: 10%;
+    @include displayFlex(column, center, center);
+
+    .team-name {
+        text-align: center;
+        opacity: 0;
+        animation: fade-in 0.7s ease-in-out forwards;
+        animation-delay: 0.6s;
+    }
+
+    .members-container {
+        width: 70%;
+        height: 100%;
+        @include displayFlex(row, flex-end, space-between);
+
+        p {
+            border-radius: 10px;
+            padding: 6px 10px;
+            background-color: rgba($color: #dce2e8, $alpha: 0.5);
+            box-shadow: 0 0 4px rgba(#000, 0.2);
+            margin-bottom: 10px;
+            transform: translateY(200%);
+            animation: show-names 0.8s cubic-bezier(0.64, -0.56, 0.36, 1.56) forwards;
+            overflow: hidden;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                width: 50%;
+                height: 100%;
+                background-color: rgba(#fff, 0.2);
+                transition: left 0.4s, right 0.4s, top 0.4s;
+                transform: skewX(-10deg);
+            }
+
+            &:nth-child(1)::after,
+            &:nth-child(2)::after {
+                left: -100%;
+            }
+
+            &:nth-child(3)::after {
+                top: -100%;
+                left: 0;
+                width: 100%;
+                height: 80%;
+                transform: skewX(0deg);
+            }
+
+            &:nth-child(4)::after,
+            &:nth-child(5)::after {
+                right: -100%;
+            }
+
+            &:hover {
+                &:nth-child(1)::after,
+                &:nth-child(2)::after {
+                    left: 100%;
+                }
+
+                &:nth-child(3)::after {
+                    top: 100%;
+                }
+
+                &:nth-child(4)::after,
+                &:nth-child(5)::after {
+                    right: 100%;
+                }
+            }
+
+            @for $i from 1 through 5 {
+                &:nth-child(#{$i}) {
+                    animation-delay: 0.2s * $i;
+                }
+            }
+        }
+    }
+}
+
+@keyframes show-names {
+    from {
+        transform: translateY(200%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes move-border {
+    0% {
+        transform: scaleX(0);
+        transform-origin: left;
+        opacity: 0;
+    }
+    50% {
+        transform: scaleX(1);
+        transform-origin: left;
+        opacity: 1;
+    }
+    51% {
+        transform: scaleX(1);
+        transform-origin: right;
+    }
+    100% {
+        transform: scaleX(0);
+        transform-origin: right;
+    }
+}
+
+@media all and (min-width: 1300px) {
+    .container-button {
+        width: 450px;
+        height: 450px;
+    }
+}

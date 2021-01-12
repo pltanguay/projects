@@ -1,0 +1,22 @@
+<div class="attribute-controls-container">
+    <div class="clipboard-control">
+        <button id="clipboard-actions" mat-icon-button (click)="copy()" matTooltip="Copier" [ngClass]="clipboard.disabled ? 'not-available' : ''">
+            <i id="clipboard-actions" class="fas fa-copy"></i>
+        </button>
+        <button id="clipboard-actions" mat-icon-button (click)="paste()" matTooltip="Coller" [ngClass]="clipboard.empty ? 'not-available' : ''">
+            <i id="clipboard-actions" class="fas fa-paste"></i>
+        </button>
+        <button id="clipboard-actions" mat-icon-button (click)="cut()" matTooltip="Couper" [ngClass]="clipboard.disabled ? 'not-available' : ''">
+            <i id="clipboard-actions" class="fas fa-cut"></i>
+        </button>
+        <button
+            id="clipboard-actions"
+            mat-icon-button
+            (click)="delete()"
+            matTooltip="Supprimer"
+            [ngClass]="clipboard.disabled ? 'not-available' : ''"
+        >
+            <i id="clipboard-actions" class="fas fa-minus-circle"></i>
+        </button>
+    </div>
+</div>

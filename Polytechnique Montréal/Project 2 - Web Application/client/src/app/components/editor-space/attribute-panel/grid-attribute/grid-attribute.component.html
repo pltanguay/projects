@@ -1,0 +1,45 @@
+<div>
+    <div class="title">{{ title }}</div>
+
+    <div class="attribute-controls-container">
+        <div class="toggle-control">
+            <p class="toggle-title">Afficher la grille</p>
+            <mat-slide-toggle
+                id="isActiveToggle"
+                class="toggle-btn"
+                [(checked)]="gridService.isActive"
+                (change)="isActiveChanged($event)"
+            ></mat-slide-toggle>
+        </div>
+
+        <div class="slider-control">
+            <p class="control-title">Taille</p>
+            <mat-slider
+                class="control-slider"
+                id="text-slider"
+                thumbLabel
+                (input)="squareSizeChanged($event)"
+                [(value)]="gridService.squareSize"
+                tickInterval="1"
+                min="{{ minSize }}"
+                max="{{ maxSize }}"
+            ></mat-slider>
+            <span class="control-value">{{ gridService.squareSize }}<small>px</small></span>
+        </div>
+
+        <div class="slider-control">
+            <p class="control-title">Opacité</p>
+            <mat-slider
+                class="control-slider"
+                id="text-slider"
+                thumbLabel
+                (input)="opacityChanged($event)"
+                [(value)]="opacity"
+                tickInterval="1"
+                min="{{ minOpacity }}"
+                max="{{ maxOpacity }}"
+            ></mat-slider>
+            <span class="control-value">{{ opacity }}<small>%</small></span>
+        </div>
+    </div>
+</div>

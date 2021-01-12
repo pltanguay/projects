@@ -1,0 +1,16 @@
+.border-width-panel {
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none !important;
+    pointer-events: none;
+}
+
+.width-slider {
+    pointer-events: all;
+    color: black;
+}
+
+:host {
+    width: 100%;
+}

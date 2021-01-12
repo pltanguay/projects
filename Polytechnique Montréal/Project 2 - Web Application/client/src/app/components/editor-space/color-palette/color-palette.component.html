@@ -1,0 +1,119 @@
+<div class="saved-container">
+    <div class="saved-colors-parent-container">
+        <div class="saved-colors-title">
+            <small><b>Couleurs récentes</b></small>
+        </div>
+        <div class="saved-colors-container">
+            <span
+                *ngFor="let colors of colorsPalette.lastTenColors; index as index"
+                [style.backgroundColor]="colors.rgbaValue"
+                (click)="onLeftClick(colors, index)"
+                (contextmenu)="onRightClick(colors, index)"
+            ></span>
+        </div>
+    </div>
+    <div class="primary-secondary-parent-container">
+        <div class="primary-secondary-container active-primary-secondary" (click)="selectColor(0)">
+            <div class="primary-secondary-title">
+                <small><b>Principale</b></small>
+            </div>
+            <div class="primary-secondary-color-container">
+                <span [ngStyle]="{ 'background-color': colorsPalette.primaryColor }"></span>
+            </div>
+        </div>
+        <i class="fas fa-exchange-alt swap-icon" (click)="swapPrimarySecondary()"></i>
+        <div class="primary-secondary-container" (click)="selectColor(1)">
+            <div class="primary-secondary-title">
+                <small><b>Secondaire</b></small>
+            </div>
+            <div class="primary-secondary-color-container">
+                <span [ngStyle]="{ 'background-color': colorsPalette.secondaryColor }"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="palette-container" [ngClass]="openPalette ? 'showPalette' : 'hidePalette'">
+    <div class="close-container" (click)="openPalette = false">
+        <span></span>
+    </div>
+    <div class="app-palette-container">
+        <app-palette [rgbColor]="sliderColor" (canvasColor)="setCanvasColor($event)" [hueValue]="hueValue"></app-palette>
+    </div>
+    <div class="sliders-container">
+        <app-hue-slider (hueColor)="setSliderColor($event)" (hueValue)="setSliderValue($event)" [latestHueValue]="hueValue"></app-hue-slider>
+        <input
+            #opacity
+            type="range"
+            min="0"
+            max="1"
+            value="1"
+            step="0.1"
+            className="opacity-input"
+            [(ngModel)]="colorsAttribute.opacity"
+            (input)="opacityChange(opacity.value)"
+        />
+        <span class="actual-color" [ngStyle]="{ 'background-color': canvasColor }"></span>
+    </div>
+    <div class="color-codes-container">
+        <div class="rgba-code-container">
+            <input
+                #red
+                type="text"
+                class="rgba-code-input"
+                [(ngModel)]="colorsAttribute.red"
+                spellcheck="false"
+                (ngModelChange)="changeRgba(red.value, 0)"
+                maxlength="2"
+                (keydown)="$event.stopPropagation()"
+            />
+            <span class="red-rgb-input"><b>R</b></span>
+        </div>
+        <div class="rgba-code-container">
+            <input
+                #green
+                type="text"
+                class="rgba-code-input"
+                [(ngModel)]="colorsAttribute.green"
+                spellcheck="false"
+                (ngModelChange)="changeRgba(green.value, 1)"
+                minlength="0"
+                maxlength="2"
+                (keydown)="$event.stopPropagation()"
+            />
+            <span class="green-rgb-input"><b>G</b></span>
+        </div>
+        <div class="rgba-code-container">
+            <input
+                #blue
+                type="text"
+                class="rgba-code-input"
+                [(ngModel)]="colorsAttribute.blue"
+                spellcheck="false"
+                (ngModelChange)="changeRgba(blue.value, 2)"
+                minlength="0"
+                maxlength="2"
+                (keydown)="$event.stopPropagation()"
+            />
+            <span class="blue-rgb-input"><b>B</b></span>
+        </div>
+        <div class="hex-code-container">
+            <p>#</p>
+            <input
+                #hexCode
+                type="text"
+                class="hex-code-input"
+                [(ngModel)]="colorsAttribute.hexCode"
+                spellcheck="false"
+                (ngModelChange)="changeHexCode(hexCode.value)"
+                minlength="0"
+                maxlength="6"
+                (keydown)="$event.stopPropagation()"
+            />
+            <span><b>HEX</b></span>
+        </div>
+    </div>
+
+    <div class="save-actions-container">
+        <button class="apply-button" (click)="saveColor()" [ngClass]="disableApplyButton ? 'disable-btn' : null">Appliquer</button>
+    </div>
+</div>

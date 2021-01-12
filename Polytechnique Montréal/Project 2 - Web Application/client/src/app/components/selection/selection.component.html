@@ -1,0 +1,14 @@
+<div
+    #controlContainer
+    class="container"
+    id="selection-container"
+    [style.width.px]="boundingBox.absDimension.width + boundingBox.strokeResolution * 2"
+    [style.height.px]="boundingBox.absDimension.height + boundingBox.strokeResolution * 2"
+    [style.top.px]="boundingBox.top - boundingBox.strokeResolution"
+    [style.left.px]="boundingBox.left - boundingBox.strokeResolution"
+    *ngIf="selectionActive"
+    (contextmenu)="ignoreContextMenu($event)"
+>
+    <app-selection-box></app-selection-box>
+    <app-control-point></app-control-point>
+</div>

@@ -1,0 +1,75 @@
+<mat-tab-group (selectedTabChange)="initialiseGuide($event.index)">
+    <mat-tab label="Divers"
+        ><div class="divers-container">
+            <div class="main-container">
+                <div class="sidebar">
+                    <app-diverse-tree (diverseNode)="setDiverseNode($event)"></app-diverse-tree>
+                </div>
+                <div class="content-container">
+                    <div class="individual-containers">
+                        <div class="section-title">
+                            <h3>{{ userGuide.title }}</h3>
+                        </div>
+                        <div class="section-body" (scroll)="onScroll()">
+                            <div class="individual-section" *ngFor="let section of userGuide.sections">
+                                <div class="image-container" *ngIf="section.fileName">
+                                    <img src="../../../assets/images/{{ section.fileName }}" alt="{{ section.fileName }}" />
+                                    <small>{{ section.fileTitle }}</small>
+                                    <mat-icon class="image-down-icon" [style.opacity]="finalOpacity">
+                                        {{ 'arrow_drop_down' }}
+                                    </mat-icon>
+                                </div>
+                                <div class="section-description">
+                                    <mat-icon [ngClass]="isEmptyInitially ? 'show-description-icon' : 'hide-description-icon'">
+                                        {{ 'expand_more' }}
+                                    </mat-icon>
+                                    <p
+                                        [innerHTML]="section.description"
+                                        [ngClass]="isEmptyInitially ? 'center-description' : 'reset-description'"
+                                    ></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div
+    ></mat-tab>
+    <mat-tab label="Dessiner"
+        ><div class="dessin-container">
+            <div class="main-container">
+                <div class="sidebar">
+                    <app-drawing-tree (drawingNode)="setDrawingNode($event)"></app-drawing-tree>
+                </div>
+                <div class="content-container">
+                    <div class="individual-containers">
+                        <div class="section-title">
+                            <h3>{{ userGuide.title }}</h3>
+                        </div>
+                        <div class="section-body" (scroll)="onScroll()">
+                            <div class="individual-section" *ngFor="let section of userGuide.sections">
+                                <div class="image-container" *ngIf="section.fileName">
+                                    <img src="../../../assets/images/{{ section.fileName }}" alt="{{ section.fileName }}" />
+                                    <small>{{ section.fileTitle }}</small>
+                                    <mat-icon class="image-down-icon" [style.opacity]="finalOpacity">
+                                        {{ 'arrow_drop_down' }}
+                                    </mat-icon>
+                                </div>
+                                <div class="section-description">
+                                    <mat-icon [ngClass]="isEmptyInitially ? 'show-description-icon' : 'hide-description-icon'">
+                                        {{ 'expand_more' }}
+                                    </mat-icon>
+                                    <p
+                                        [innerHTML]="section.description"
+                                        [ngClass]="isEmptyInitially ? 'center-description' : 'reset-description'"
+                                    ></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div
+    ></mat-tab>
+</mat-tab-group>
+<div class="button-container">
+    <button mat-button mat-dialog-close class="custom-button no-btn">Fermer</button>
+</div>

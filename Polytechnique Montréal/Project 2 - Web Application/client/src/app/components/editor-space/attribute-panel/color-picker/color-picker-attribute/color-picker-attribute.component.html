@@ -1,0 +1,10 @@
+<div>
+    <div class="title">{{ title }}</div>
+    <div class="previsualisation-container">
+        <div class="previsualisation" *ngIf="colorPicker.shouldPickerBeAvailable; else showText">
+            <span *ngFor="let color of colorPicker.surroundingPixels" [style.backgroundColor]="color"></span>
+            <span class="middle-pixel" [ngStyle]="applyBorderColor()"></span>
+        </div>
+        <ng-template #showText>Placez la souris sur le canvas pour saisir une couleur</ng-template>
+    </div>
+</div>

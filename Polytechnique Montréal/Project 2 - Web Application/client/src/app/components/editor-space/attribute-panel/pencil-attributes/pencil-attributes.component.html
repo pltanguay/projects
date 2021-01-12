@@ -1,0 +1,17 @@
+<div class="title">{{ title }}</div>
+<div class="attribute-controls-container">
+    <div class="slider-control">
+        <p class="control-title">Taille</p>
+        <mat-slider
+            id="widthSlider"
+            class="control-slider"
+            thumbLabel
+            (input)="widthChanged($event)"
+            [value]="width"
+            tickInterval="1"
+            min="{{ minWidth }}"
+            max="{{ maxWidth }}"
+        ></mat-slider>
+        <span class="control-value">{{ width }}<small>px</small></span>
+    </div>
+</div>

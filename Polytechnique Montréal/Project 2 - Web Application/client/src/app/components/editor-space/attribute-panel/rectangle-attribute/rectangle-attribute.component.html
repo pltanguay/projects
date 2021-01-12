@@ -1,0 +1,32 @@
+<div class="title">{{ title }}</div>
+<div class="attribute-controls-container">
+    <div class="toggle-control">
+        <p class="toggle-title">Remplissage</p>
+        <mat-slide-toggle id="fillToggle" class="toggle-btn" [checked]="isWithFill" (change)="withFillToggled($event)"> </mat-slide-toggle>
+    </div>
+</div>
+
+<div class="attribute-controls-container">
+    <mat-expansion-panel hideToggle [expanded]="isWithBorder" class="border-width-panel">
+        <mat-expansion-panel-header class="toggle-control">
+            <p class="toggle-title">Contour</p>
+            <mat-slide-toggle id="borderToggle" class="width-slider toggle-btn" [checked]="isWithBorder" (change)="withBorderToggled($event)">
+            </mat-slide-toggle>
+        </mat-expansion-panel-header>
+
+        <div class="slider-control">
+            <div class="control-title">Taille</div>
+            <mat-slider
+                id="widthSlider"
+                class="width-slider"
+                thumbLabel
+                (input)="widthChanged($event)"
+                [value]="width"
+                tickInterval="1"
+                min="{{ minWidth }}"
+                max="{{ maxWidth }}"
+            ></mat-slider>
+            <span class="control-value">{{ width }}px</span>
+        </div>
+    </mat-expansion-panel>
+</div>

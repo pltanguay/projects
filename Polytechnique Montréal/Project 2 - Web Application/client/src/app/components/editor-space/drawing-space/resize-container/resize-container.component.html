@@ -1,0 +1,24 @@
+<div
+    [hidden]="resizeableBorderHidden"
+    [style.width.px]="[resizeService.width]"
+    [style.height.px]="[resizeService.height]"
+    class="resize-border"
+></div>
+<app-resize-indicator
+    (resizeChange)="resizeRightChange($event)"
+    (isDragged)="resizeDragged()"
+    (isReleased)="resizeReleased()"
+    [positionClass]="'right-resize'"
+></app-resize-indicator>
+<app-resize-indicator
+    (resizeChange)="resizeBottomChange($event)"
+    (isDragged)="resizeDragged()"
+    (isReleased)="resizeReleased()"
+    [positionClass]="'bottom-resize'"
+></app-resize-indicator>
+<app-resize-indicator
+    (resizeChange)="resizeDiagonalChange($event)"
+    (isDragged)="resizeDragged()"
+    (isReleased)="resizeReleased()"
+    [positionClass]="'se-resize'"
+></app-resize-indicator>

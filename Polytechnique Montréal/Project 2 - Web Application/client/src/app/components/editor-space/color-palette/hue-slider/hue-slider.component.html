@@ -1,0 +1,11 @@
+<input
+    type="range"
+    min="0"
+    max="360"
+    value="latestHueValue"
+    step="1"
+    className="hue-input"
+    #hueInput
+    (input)="onHueChange(hueInput.value)"
+    [(ngModel)]="newHueValue"
+/>

@@ -1,0 +1,56 @@
+<app-selection-indicator
+    (resizeChange)="scale($event, 0, -1)"
+    (mouseIsUp)="updateState()"
+    (mouseIsDown)="updateState()"
+    (shiftIsReleased)="updateState()"
+    [positionClass]="'top-resize'"
+></app-selection-indicator>
+<app-selection-indicator
+    (resizeChange)="scale($event, 1, 0)"
+    (mouseIsUp)="updateState()"
+    (mouseIsDown)="updateState()"
+    (shiftIsReleased)="updateState()"
+    [positionClass]="'right-resize'"
+></app-selection-indicator>
+<app-selection-indicator
+    (resizeChange)="scale($event, 0, 1)"
+    (mouseIsUp)="updateState()"
+    (mouseIsDown)="updateState()"
+    (shiftIsReleased)="updateState()"
+    [positionClass]="'bottom-resize'"
+></app-selection-indicator>
+<app-selection-indicator
+    (resizeChange)="scale($event, -1, 0)"
+    (mouseIsUp)="updateState()"
+    (mouseIsDown)="updateState()"
+    (shiftIsReleased)="updateState()"
+    [positionClass]="'left-resize'"
+></app-selection-indicator>
+<app-selection-indicator
+    (resizeChange)="scale($event, -1, -1)"
+    (mouseIsUp)="updateState()"
+    (mouseIsDown)="updateState()"
+    (shiftIsReleased)="updateState()"
+    [positionClass]="'nw-resize'"
+></app-selection-indicator>
+<app-selection-indicator
+    (resizeChange)="scale($event, 1, -1)"
+    (mouseIsUp)="updateState()"
+    (mouseIsDown)="updateState()"
+    (shiftIsReleased)="updateState()"
+    [positionClass]="'ne-resize'"
+></app-selection-indicator>
+<app-selection-indicator
+    (resizeChange)="scale($event, 1, 1)"
+    (mouseIsUp)="updateState()"
+    (mouseIsDown)="updateState()"
+    (shiftIsReleased)="updateState()"
+    [positionClass]="'se-resize'"
+></app-selection-indicator>
+<app-selection-indicator
+    (resizeChange)="scale($event, -1, 1)"
+    (mouseIsUp)="updateState()"
+    (mouseIsDown)="updateState()"
+    (shiftIsReleased)="updateState()"
+    [positionClass]="'sw-resize'"
+></app-selection-indicator>

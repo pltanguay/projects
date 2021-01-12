@@ -1,0 +1,44 @@
+@mixin displayFlex($dis, $dir, $align, $justify) {
+    display: $dis;
+    flex-direction: $dir;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin groupingProperties() {
+    @include displayFlex(grid, column, center, center);
+    width: 100%;
+    height: 100%;
+    grid-template-rows: repeat(2, 1fm);
+    background-color: #aac6c786;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 5px;
+    margin-bottom: 8px;
+    box-shadow: -2px -2px 3px rgba(83, 80, 80, 0.199);
+    border-radius: 10%;
+}
+
+.icon-group-container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+
+    .tools-container {
+        @include displayFlex(flex, column, center, center);
+        width: 100%;
+        height: 100%;
+        .draw-container {
+            @include groupingProperties();
+        }
+        .shape-container {
+            @include groupingProperties();
+        }
+        .selection-container {
+            @include groupingProperties();
+        }
+        .utils-container {
+            @include groupingProperties();
+        }
+    }
+}

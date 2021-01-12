@@ -1,0 +1,31 @@
+@mixin displayFlex($dir, $align, $justify) {
+    display: flex;
+    flex-direction: $dir;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+.border-width-panel {
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none !important;
+    pointer-events: none;
+    @include displayFlex(column, center, center);
+}
+
+.width-slider {
+    pointer-events: all;
+    color: black;
+}
+
+.snap-container {
+    margin: auto;
+    justify-content: center;
+    margin-left: 11%;
+}
+
+.circle {
+    pointer-events: all;
+    cursor: pointer;
+}

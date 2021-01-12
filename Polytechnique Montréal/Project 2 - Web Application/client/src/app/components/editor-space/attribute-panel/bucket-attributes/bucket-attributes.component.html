@@ -1,0 +1,18 @@
+<div class="title">{{ title }}</div>
+<div class="attribute-controls-container">
+    <div class="slider-control">
+        <p class="control-title">Tolérance</p>
+
+        <mat-slider
+            id="toleranceSlider"
+            class="control-slider"
+            thumbLabel
+            (input)="toleranceChanged($event)"
+            [value]="tolerance"
+            tickInterval="1"
+            min="{{ minTolerance }}"
+            max="{{ maxTolerance }}"
+        ></mat-slider>
+        <span class="control-value">{{ tolerance }}<small>%</small></span>
+    </div>
+</div>
